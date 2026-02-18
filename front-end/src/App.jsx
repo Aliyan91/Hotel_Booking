@@ -10,12 +10,13 @@ import SingleRoom from './pages/SingleRoom'
 import About from './pages/About'
 import Navbar from './components/Navbar'
 import { useLocation } from 'react-router-dom'
+import Footer from './components/Footer'
 const App = () => {
 
   const location = useLocation()
   const ownerPath = location.pathname.includes('/owner')
   return (
-    <div>
+    <div className='w-full min-h-screen mx-auto'>
       {
         !ownerPath && <Navbar />
       }
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/my-bookings" element={<MyBookings />} />
         <Route path="/rooms/:id" element={<SingleRoom />} />
       </Routes>
+      {!ownerPath && <Footer />}
     </div>
   )
 }

@@ -1,10 +1,11 @@
 import { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const AppContext = createContext();  
 
 const AppContextProvider = ({ children }) => {
 
-    
+    const navigate = useNavigate();
 
     const [user, setUser] = useState(null);
     const [owner, setOwner] = useState(null);
@@ -12,7 +13,8 @@ const AppContextProvider = ({ children }) => {
         user,
         setUser,
         owner,
-        setOwner
+        setOwner,
+        navigate
     }
     return (
         <AppContext.Provider value={value}>

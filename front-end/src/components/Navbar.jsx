@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import {assets} from "../assets/assets.js"
+import { AppContext } from "../context/AppContext.jsx";
 
 const Navbar = () => {
   const navLinks = [
@@ -8,6 +9,8 @@ const Navbar = () => {
     { name: "Rooms", path: "/rooms" },
     { name: "About", path: "/about" },
   ];
+
+  const  {navigate}= useContext(AppContext);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -53,8 +56,8 @@ const Navbar = () => {
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
-        <button
-          className={`text-white border text-sm px-8 py-2.5 rounded-full ml-4 transition-all duration-500`}
+        <button onClick={() => navigate("/login")}
+          className={`text-white border text-sm px-8 py-2.5 rounded-full ml-4 transition-all duration-500 hover:bg-white hover:text-[#ff6347] cursor-pointer`}
         >
           Login
         </button>
@@ -106,7 +109,10 @@ const Navbar = () => {
           New Launch
         </button>
 
-        <button className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
+        <button
+          onClick={() => navigate("/login")}
+          className={`bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500 hover:bg-white hover:text-black ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
+        >
           Login
         </button>
       </div>
