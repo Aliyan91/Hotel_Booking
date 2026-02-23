@@ -1,8 +1,11 @@
 import React from "react";
 import { Mail, Lock, UserRound } from "lucide-react";
+import { AppContext } from "../context/AppContext.jsx";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [state, setState] = React.useState("login");
+  const { setUser, navigate } = React.useContext(AppContext);
   const [formData, setFormData] = React.useState({
     name: "",
     email: "",
@@ -12,6 +15,11 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("form data", formData)
+    // Here you would typically call your authentication API
+    // For now, we'll just set the user state
+    setUser(true);
+    navigate("/");
+    toast.success("Login successful");
   };
 
   const handleChange = (e) => {

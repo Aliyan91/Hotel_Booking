@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import {assets} from "../assets/assets.js"
 import { AppContext } from "../context/AppContext.jsx";
+import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const navLinks = [
@@ -10,9 +12,15 @@ const Navbar = () => {
     { name: "About", path: "/about" },
   ];
 
-  const  {navigate}= useContext(AppContext);
+  const  {navigate , user, setUser}= useContext(AppContext);
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const handleLogout = () => {
+    setUser(null);
+    navigate("/");
+    toast.success("Logged out successfully");
+  };
 
   return (
     <nav
@@ -40,27 +48,43 @@ const Navbar = () => {
         <button
           className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer  transition-all text-white`}
         >
-          New Launch
+          Owner
         </button>
       </div>
 
       {/* Desktop Right */}
       <div className="hidden md:flex items-center gap-4">
-        <svg
-          className={`h-6 w-6 text-white transition-all duration-500 `}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <circle cx="11" cy="11" r="8" />
-          <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-        <button onClick={() => navigate("/login")}
-          className={`text-white border text-sm px-8 py-2.5 rounded-full ml-4 transition-all duration-500 hover:bg-white hover:text-[#ff6347] cursor-pointer`}
-        >
-          Login
-        </button>
+        
+
+        {
+          user ? (
+            <div className="relative group inline-block">
+              <img src={assets.profile_icon} alt="" className="w-12 h-12 rounded-full cursor-pointer" />
+
+              {/* {dropdown} */}
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:visible invisible transition-all duration-300 py-1 z-50">
+                <ul>
+                  <li>
+                    <Link to={`/my-bookings`} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Bookings</Link>
+                  </li>
+                  <li>
+                    <Link to={"/settings"} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</Link>
+                  </li>
+                  <li onClick={handleLogout}>
+                    <Link to={"/logout"}  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          ) : (
+            <button onClick={() => navigate("/login")}
+              className={`text-white border text-sm px-8 py-2.5 rounded-full ml-4 transition-all duration-500 hover:bg-white hover:text-[#ff6347] cursor-pointer`}
+            >
+              Login
+            </button>
+          )
+        }
+       
       </div>
 
       {/* Mobile Menu Button */}
@@ -106,7 +130,7 @@ const Navbar = () => {
         ))}
 
         <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all text-white">
-          New Launch
+          Owner
         </button>
 
         <button

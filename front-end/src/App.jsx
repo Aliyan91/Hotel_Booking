@@ -11,12 +11,14 @@ import About from './pages/About'
 import Navbar from './components/Navbar'
 import { useLocation } from 'react-router-dom'
 import Footer from './components/Footer'
+import { Toaster } from 'react-hot-toast'
 const App = () => {
 
   const location = useLocation()
   const ownerPath = location.pathname.includes('/owner')
   return (
     <div className='w-full min-h-screen mx-auto'>
+      <Toaster />
       {
         !ownerPath && <Navbar />
       }
