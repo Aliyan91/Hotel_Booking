@@ -27,23 +27,23 @@ const Navbar = () => {
       className={`fixed top-0 left-0 bg-[#ff6347] w-full flex items-center py-6 justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50`}
     >
       {/* Logo */}
-      <a href="/" className="flex items-center gap-2">
+      <Link to="/" className="flex items-center gap-2">
         <img src={assets.logo} alt="" />
-      </a>
+      </Link>
 
       {/* Desktop Nav */}
       <div className="hidden md:flex items-center gap-4 lg:gap-8">
         {navLinks.map((link, i) => (
-          <a
+          <Link
             key={i}
-            href={link.path}
+            to={link.path}
             className={`text-white group flex flex-col gap-0.5 `}
           >
             {link.name}
             <div
               className={`bg-white h-0.5  w-0 group-hover:w-full transition-all duration-300`}
             />
-          </a>
+          </Link>
         ))}
         <button
           className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer  transition-all text-white`}
@@ -124,9 +124,9 @@ const Navbar = () => {
         </button>
 
         {navLinks.map((link, i) => (
-          <a key={i} href={link.path} onClick={() => setIsMenuOpen(false)}>
+          <Link key={i} to={link.path} onClick={() => setIsMenuOpen(false)}>
             {link.name}
-          </a>
+          </Link>
         ))}
 
         <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all text-white">

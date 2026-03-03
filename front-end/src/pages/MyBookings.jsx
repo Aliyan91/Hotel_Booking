@@ -2,7 +2,7 @@ import React from 'react'
 
 const MyBookings = () => {
   return (
-    <div>MyBookings</div>
+    <div className='min-h-screen py-24'>MyBookings</div>
   )
 }
 

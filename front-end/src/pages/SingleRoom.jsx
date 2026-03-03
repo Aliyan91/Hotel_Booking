@@ -2,7 +2,7 @@ import React from 'react'
 
 const SingleRoom = () => {
   return (
-    <div>SingleRoom</div>
+    <div className='min-h-screen py-24'>SingleRoom</div>
   )
 }
 

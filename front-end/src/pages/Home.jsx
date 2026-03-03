@@ -1,8 +1,11 @@
 import React from 'react'
+import Hero from '../components/Hero'
 
 const Home = () => {
   return (
-    <div className='max-h-screen py-24'>Home</div>
+    <div className='min-h-screen py-24'>
+        <Hero />
+    </div>
   )
 }
 
